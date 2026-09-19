@@ -1,0 +1,1134 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Para mi muñequita preciosa, feliz día amor</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow: hidden;
+            background: #02010a;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        /* =========================
+           FONDO DEL UNIVERSO
+        ========================= */
+
+        .universo {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+
+            background:
+                radial-gradient(
+                    ellipse at center,
+                    #25104d 0%,
+                    #100629 35%,
+                    #04020d 70%,
+                    #000000 100%
+                );
+        }
+
+
+        /* =========================
+           ESTRELLAS
+        ========================= */
+
+        .estrella {
+            position: absolute;
+
+            width: 2px;
+            height: 2px;
+
+            background: white;
+
+            border-radius: 50%;
+
+            animation:
+                parpadear 2s infinite alternate;
+
+            z-index: 1;
+        }
+
+
+        @keyframes parpadear {
+
+            from {
+                opacity: 0.2;
+            }
+
+            to {
+                opacity: 1;
+            }
+
+        }
+
+
+        /* =========================
+           ESTRELLAS FUGACES
+        ========================= */
+
+        .estrella-fugaz {
+
+            position: absolute;
+
+            width: 4px;
+            height: 4px;
+
+            background: white;
+
+            border-radius: 50%;
+
+            box-shadow:
+                0 0 6px white,
+                0 0 15px #e5c7ff,
+                0 0 30px #b76cff,
+                0 0 50px #8c3cff;
+
+            opacity: 0;
+
+            z-index: 4;
+
+            transform: rotate(-35deg);
+        }
+
+
+        .estrella-fugaz::after {
+
+            content: "";
+
+            position: absolute;
+
+            right: 0;
+            top: 50%;
+
+            width: 150px;
+            height: 3px;
+
+            transform:
+                translateY(-50%);
+
+            background:
+                linear-gradient(
+                    to left,
+                    rgba(255,255,255,0),
+                    rgba(206,164,255,0.25),
+                    rgba(230,200,255,0.8),
+                    white
+                );
+
+            filter: blur(1px);
+
+            border-radius: 50%;
+        }
+
+
+        .estrella-fugaz.grande {
+
+            width: 6px;
+            height: 6px;
+
+            box-shadow:
+                0 0 10px white,
+                0 0 25px #e9d4ff,
+                0 0 50px #c277ff,
+                0 0 80px #8b42ff;
+        }
+
+
+        .estrella-fugaz.grande::after {
+
+            width: 230px;
+            height: 4px;
+        }
+
+
+        .estrella-fugaz.volando {
+
+            animation:
+                estrellaFugaz 1.4s
+                cubic-bezier(.2,.7,.3,1)
+                forwards;
+        }
+
+
+        @keyframes estrellaFugaz {
+
+            0% {
+
+                opacity: 0;
+
+                transform:
+                    translate(0, 0)
+                    rotate(-35deg)
+                    scale(0.4);
+            }
+
+            10% {
+
+                opacity: 1;
+            }
+
+            75% {
+
+                opacity: 1;
+            }
+
+            100% {
+
+                opacity: 0;
+
+                transform:
+                    translate(-450px, 450px)
+                    rotate(-35deg)
+                    scale(1.2);
+            }
+
+        }
+
+
+        /* =========================
+           PANTALLA INICIAL
+        ========================= */
+
+        .inicio {
+
+            position: absolute;
+
+            z-index: 10;
+
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            transition:
+                opacity 1.5s ease;
+        }
+
+
+        .contenido {
+
+            width: 90%;
+
+            max-width: 600px;
+        }
+
+
+        .corazon {
+
+            font-size: 70px;
+
+            animation:
+                latido 1.7s infinite;
+        }
+
+
+        @keyframes latido {
+
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.15);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+
+        }
+
+
+        .titulo {
+
+            margin-top: 15px;
+
+            font-size:
+                clamp(35px, 7vw, 65px);
+
+            background:
+                linear-gradient(
+                    90deg,
+                    white,
+                    #ffc8f0,
+                    #d8b4ff,
+                    white
+                );
+
+            -webkit-background-clip: text;
+
+            color: transparent;
+        }
+
+
+        .descripcion {
+
+            margin-top: 20px;
+
+            font-size: 18px;
+
+            line-height: 1.7;
+
+            color: #ddd5ea;
+        }
+
+
+        .boton {
+
+            margin-top: 30px;
+
+            padding: 15px 30px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.4);
+
+            border-radius: 50px;
+
+            background:
+                rgba(255,255,255,0.08);
+
+            color: white;
+
+            font-size: 17px;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+
+        .boton:hover {
+
+            background:
+                rgba(255,255,255,0.2);
+
+            transform:
+                scale(1.05);
+        }
+
+
+        /* =========================
+           GALAXIA
+        ========================= */
+
+        .galaxia {
+
+            position: absolute;
+
+            width: 100%;
+            height: 100%;
+
+            opacity: 0;
+
+            transform:
+                scale(0.2);
+
+            transition:
+                opacity 2s ease,
+                transform 5s ease;
+
+            pointer-events: none;
+        }
+
+
+        .galaxia.activa {
+
+            opacity: 1;
+
+            transform:
+                scale(1);
+
+            pointer-events: auto;
+        }
+
+
+        /* =========================
+           CENTRO DE LA GALAXIA
+        ========================= */
+
+        .centro {
+
+            position: absolute;
+
+            left: 50%;
+            top: 50%;
+
+            transform:
+                translate(-50%, -50%);
+
+            width: 180px;
+            height: 180px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    white 0%,
+                    #ffd8f5 8%,
+                    #d48cff 20%,
+                    rgba(150,70,255,0.3) 45%,
+                    transparent 70%
+                );
+
+            filter: blur(1px);
+
+            box-shadow:
+                0 0 40px #d58cff,
+                0 0 100px #8b4dff,
+                0 0 180px #5725a0;
+
+            animation:
+                respirar 5s infinite alternate;
+        }
+
+
+        @keyframes respirar {
+
+            from {
+                transform:
+                    translate(-50%, -50%)
+                    scale(0.9);
+            }
+
+            to {
+                transform:
+                    translate(-50%, -50%)
+                    scale(1.15);
+            }
+
+        }
+
+
+        /* =========================
+           FRASES
+        ========================= */
+
+        .frases {
+
+            position: absolute;
+
+            width: 100%;
+            height: 100%;
+
+            left: 0;
+            top: 0;
+        }
+
+
+        .frase {
+
+            position: absolute;
+
+            left: 50%;
+            top: 50%;
+
+            white-space: nowrap;
+
+            font-size:
+                var(--tamano);
+
+            color: #f7eaff;
+
+            text-shadow:
+                0 0 5px #dca5ff,
+                0 0 12px #a958ff;
+
+            animation:
+                orbitar
+                var(--duracion)
+                linear
+                infinite;
+
+            animation-delay:
+                var(--retraso);
+
+            transform-origin:
+                center;
+        }
+
+
+        .frase::before {
+
+            content: "♥ ";
+
+            color: #ff9bdc;
+        }
+
+
+        @keyframes orbitar {
+
+            from {
+
+                transform:
+                    rotate(0deg)
+                    translateX(var(--radio))
+                    rotate(0deg);
+            }
+
+            to {
+
+                transform:
+                    rotate(360deg)
+                    translateX(var(--radio))
+                    rotate(-360deg);
+            }
+
+        }
+
+
+        /* =========================
+           MENSAJE FINAL
+        ========================= */
+
+        .mensaje-final {
+
+            position: absolute;
+
+            z-index: 5;
+
+            left: 50%;
+            top: 50%;
+
+            transform:
+                translate(-50%, -50%);
+
+            width: 90%;
+
+            text-align: center;
+
+            opacity: 0;
+
+            transition:
+                opacity 2s ease 4s;
+        }
+
+
+        .galaxia.activa
+        .mensaje-final {
+
+            opacity: 1;
+        }
+
+
+        .mensaje-final h1 {
+
+            font-size:
+                clamp(30px, 7vw, 55px);
+
+            text-shadow:
+                0 0 10px #fff,
+                0 0 25px #d57cff,
+                0 0 50px #9d42ff;
+        }
+
+
+        .mensaje-final p {
+
+            margin-top: 15px;
+
+            font-size: 17px;
+
+            line-height: 1.6;
+
+            color: #e6dcef;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            .descripcion {
+
+                font-size: 16px;
+            }
+
+
+            .frase {
+
+                font-size:
+                    var(--tamano);
+            }
+
+
+            .centro {
+
+                width: 130px;
+                height: 130px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="universo">
+
+    <!-- =========================
+         ESTRELLAS
+    ========================= -->
+
+    <div id="estrellas"></div>
+
+
+    <!-- =========================
+         INTRODUCCIÓN
+    ========================= -->
+
+    <section
+        class="inicio"
+        id="inicio"
+    >
+
+        <div class="contenido">
+
+            <div class="corazon">
+                ❤️
+            </div>
+
+
+            <h1 class="titulo">
+
+                Para mi muñequita
+                de ojos preciosos
+
+            </h1>
+
+
+            <p class="descripcion">
+
+                Hay cosas que son demasiado grandes
+                para explicarlas con una sola frase...
+                así que decidí construirte un pequeño universo.
+
+            </p>
+
+
+            <button
+                class="boton"
+                id="entrar"
+            >
+
+                Entrar a mi universo
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         GALAXIA
+    ========================= -->
+
+    <section
+        class="galaxia"
+        id="galaxia"
+    >
+
+        <div class="centro"></div>
+
+
+        <div
+            class="frases"
+            id="frases"
+        ></div>
+
+
+        <!-- =========================
+             MENSAJE CENTRAL
+        ========================= -->
+
+        <div class="mensaje-final">
+
+            <h1>
+
+                Te amoooooooooooo
+                mi amor ❤️
+
+            </h1>
+
+
+            <p>
+
+                Y si pudiera llenar cada galaxia
+                del universo con un "te amo",
+                todavía me faltarían palabras.
+
+            </p>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+
+<script>
+
+
+    /* ==================================
+       CREAR ESTRELLAS
+    ================================== */
+
+    const estrellas =
+        document.getElementById(
+            "estrellas"
+        );
+
+
+    for (
+        let i = 0;
+        i < 180;
+        i++
+    ) {
+
+        const estrella =
+            document.createElement("div");
+
+
+        estrella.classList.add(
+            "estrella"
+        );
+
+
+        estrella.style.left =
+            Math.random() * 100 + "%";
+
+
+        estrella.style.top =
+            Math.random() * 100 + "%";
+
+
+        estrella.style.animationDelay =
+            Math.random() * 2 + "s";
+
+
+        const tamaño =
+            Math.random() * 2 + 1;
+
+
+        estrella.style.width =
+            tamaño + "px";
+
+
+        estrella.style.height =
+            tamaño + "px";
+
+
+        estrellas.appendChild(
+            estrella
+        );
+
+    }
+
+
+
+    /* ==================================
+       FRASES DE AMOR
+    ================================== */
+
+    const frasesAmor = [
+
+        "TE AMOOOO",
+
+        "TE QUIERO SIEMPRE CONMIGO",
+
+        "TE AMO MAMASITAAAAAAAA",
+
+        "TE AMO MI NIÑA",
+
+        "TE AMO MI VIDA",
+
+        "TE AMO MI AMOR",
+
+        "TE AMO CON TODO MI CORAZÓN",
+
+        "TE AMARÉ SIEMPRE",
+
+        "SIEMPRE VOY A ELEGIRTE",
+
+        "QUIERO CRECER CONTIGO",
+
+        "ERES MI PERSONA FAVORITA",
+
+        "ERES MI UNIVERSO COMPLETO",
+
+        "MI LUGAR FAVORITO ERES TÚ",
+
+        "TE AMO INFINITAMENTE",
+
+        "TE AMO MÁS ALLÁ DE LAS ESTRELLAS",
+
+        "TE AMO MÁS ALLÁ DEL TIEMPO",
+
+        "TE AMO EN ESTA VIDA Y EN TODAS",
+
+        "TÚ Y YO, SIEMPRE",
+
+        "MI NIÑA PRECIOSA",
+
+        "MI MUÑEQUITA",
+
+        "777",
+
+        "MABEL",
+
+        "TE ELEGIRÍA UNA Y MIL VECES",
+
+        "GRACIAS POR EXISTIR",
+
+        "QUIERO SEGUIR CRECIENDO CONTIGO",
+
+        "ERES ÚNICA",
+
+        "ERES INCREÍBLE",
+
+        "TE AMO CADA DÍA MÁS",
+
+        "SIEMPRE TE AMAREEEEE",
+
+        "ERES UNICA",
+
+        "ERES AUTENTICA",
+
+        "PROMETO AMARTE POR SIEMPRE"
+
+    ];
+
+
+
+    /* ==================================
+       CREAR GALAXIA
+    ================================== */
+
+    const contenedorFrases =
+        document.getElementById(
+            "frases"
+        );
+
+
+    for (
+        let i = 0;
+        i < 120;
+        i++
+    ) {
+
+        const frase =
+            document.createElement(
+                "span"
+            );
+
+
+        frase.classList.add(
+            "frase"
+        );
+
+
+        frase.textContent =
+            frasesAmor[
+                i % frasesAmor.length
+            ];
+
+
+        const radio =
+            70 +
+            Math.random() * 300;
+
+
+        const tamaño =
+            9 +
+            Math.random() * 8;
+
+
+        const duracion =
+            8 +
+            Math.random() * 15;
+
+
+        const retraso =
+            Math.random() * -15;
+
+
+        frase.style.setProperty(
+            "--radio",
+            radio + "px"
+        );
+
+
+        frase.style.setProperty(
+            "--tamano",
+            tamaño + "px"
+        );
+
+
+        frase.style.setProperty(
+            "--duracion",
+            duracion + "s"
+        );
+
+
+        frase.style.setProperty(
+            "--retraso",
+            retraso + "s"
+        );
+
+
+        frase.style.transform =
+            `rotate(
+                ${Math.random() * 360}deg
+            )
+            translateX(
+                ${radio}px
+            )`;
+
+
+        contenedorFrases.appendChild(
+            frase
+        );
+
+    }
+
+
+
+    /* ==================================
+       ESTRELLAS FUGACES
+    ================================== */
+
+    function crearEstrellaFugaz() {
+
+        const estrella =
+            document.createElement(
+                "div"
+            );
+
+
+        estrella.classList.add(
+            "estrella-fugaz"
+        );
+
+
+        /*
+            Algunas estrellas serán
+            más grandes.
+        */
+
+        if (Math.random() < 0.25) {
+
+            estrella.classList.add(
+                "grande"
+            );
+
+        }
+
+
+        /*
+            Aparecerán principalmente
+            por la parte superior.
+        */
+
+        estrella.style.left =
+            (
+                15 +
+                Math.random() * 90
+            ) + "%";
+
+
+        estrella.style.top =
+            (
+                0 +
+                Math.random() * 55
+            ) + "%";
+
+
+        /*
+            Añadir al universo
+        */
+
+        document
+            .querySelector(".universo")
+            .appendChild(
+                estrella
+            );
+
+
+        /*
+            Activar animación
+        */
+
+        requestAnimationFrame(() => {
+
+            estrella.classList.add(
+                "volando"
+            );
+
+        });
+
+
+        /*
+            Eliminar cuando termine
+        */
+
+        setTimeout(() => {
+
+            estrella.remove();
+
+        }, 1600);
+
+    }
+
+
+
+    /* ==================================
+       CICLO DE ESTRELLAS FUGACES
+    ================================== */
+
+    let estrellasFugacesActivas =
+        false;
+
+
+    function iniciarEstrellasFugaces() {
+
+        if (
+            !estrellasFugacesActivas
+        ) {
+
+            return;
+
+        }
+
+
+        /*
+            Tiempo aleatorio:
+
+            mínimo 1.8 segundos
+            máximo 6 segundos
+        */
+
+        const tiempo =
+            1800 +
+            Math.random() * 4200;
+
+
+        setTimeout(() => {
+
+            crearEstrellaFugaz();
+
+
+            iniciarEstrellasFugaces();
+
+        }, tiempo);
+
+    }
+
+
+
+    /* ==================================
+       BOTÓN
+    ================================== */
+
+    const boton =
+        document.getElementById(
+            "entrar"
+        );
+
+
+    const inicio =
+        document.getElementById(
+            "inicio"
+        );
+
+
+    const galaxia =
+        document.getElementById(
+            "galaxia"
+        );
+
+
+    boton.addEventListener(
+        "click",
+        () => {
+
+            /*
+                Desaparece la introducción
+            */
+
+            inicio.style.opacity =
+                "0";
+
+
+            /*
+                Activamos galaxia
+            */
+
+            galaxia.classList.add(
+                "activa"
+            );
+
+
+            /*
+                Activamos estrellas
+                fugaces después de
+                entrar.
+            */
+
+            estrellasFugacesActivas =
+                true;
+
+
+            iniciarEstrellasFugaces();
+
+
+            /*
+                Eliminamos pantalla
+                inicial.
+            */
+
+            setTimeout(() => {
+
+                inicio.style.display =
+                    "none";
+
+            }, 1500);
+
+        }
+    );
+
+
+</script>
+
+
+</body>
+</html>
+```
